@@ -1,0 +1,6 @@
+projectKey=CSV-XLSX-Parser
+serverUrl=http://localhost:9876
+serverVersion=9.8.0.63668
+dashboardUrl=http://localhost:9876/dashboard?id=CSV-XLSX-Parser
+ceTaskId=AYW6SoaCiFNNW_uVn7-C
+ceTaskUrl=http://localhost:9876/api/ce/task?id=AYW6SoaCiFNNW_uVn7-C
