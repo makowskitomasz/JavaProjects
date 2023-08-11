@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Game.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">poker-common</a> &gt; <a href="index.source.html" class="el_package">pl.edu.agh.kis.pz1</a> &gt; <span class="el_source">Game.java</span></div><h1>Game.java</h1><pre class="source lang-java linenums">package pl.edu.agh.kis.pz1;
+
+import java.util.*;
+
+/**
+ * @author tomaszmakowski
+ * A class that represents a game of poker
+ */
+public class Game {
+    int numberOfPlayers;
+
+    public List&lt;Player&gt; getListOfPlayers() {
+<span class="fc" id="L13">        return listOfPlayers;</span>
+    }
+
+<span class="fc" id="L16">    List&lt;Player&gt; listOfPlayers = new ArrayList&lt;&gt;();</span>
+    Deck deck;
+    List&lt;String&gt; playerNames;
+<span class="fc" id="L19">    Map&lt;String, Integer&gt; playerRanking = new HashMap&lt;&gt;();</span>
+
+    /**
+     * Constructor of game class
+     * @param numberOfPlayers_ number of players in game
+     * creates a new deck
+     */
+<span class="fc" id="L26">    Game(int numberOfPlayers_) {</span>
+<span class="fc" id="L27">        this.numberOfPlayers = numberOfPlayers_;</span>
+<span class="fc" id="L28">        this.deck = new Deck();</span>
+<span class="fc" id="L29">    }</span>
+
+    /**
+     * Shuffles the deck and deals cards to players
+     */
+    public void startGame(){
+<span class="fc" id="L35">        deck.Shuffle();</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        for (int i = 0; i &lt; numberOfPlayers; i++) {</span>
+<span class="fc" id="L37">            listOfPlayers.add(new Player(&quot;player&quot; + i));</span>
+        }
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        for (int i = 0; i &lt; 5; i++) {</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">            for (Player player : listOfPlayers) {</span>
+<span class="fc" id="L41">                player.newCardInHand(deck.getTopCard());</span>
+<span class="fc" id="L42">            }</span>
+        }
+
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        for(Player player : listOfPlayers){</span>
+<span class="fc" id="L46">            player.Sort(player.hand);</span>
+<span class="fc" id="L47">        }</span>
+<span class="fc" id="L48">    }</span>
+
+    /**
+     * Method that show the card in hand of the player
+     * @param playerID id of the player
+     * @return string with cards in hand
+     */
+    String printHand(int playerID){
+<span class="fc" id="L56">        listOfPlayers.get(playerID).Sort(listOfPlayers.get(playerID).hand);</span>
+<span class="fc" id="L57">        StringBuilder handString = new StringBuilder();</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        for (Card card : listOfPlayers.get(playerID).hand){</span>
+<span class="fc" id="L59">            handString.append(card.rank).append(&quot; &quot;).append(card.suit).append(&quot; | &quot;);</span>
+<span class="fc" id="L60">        }</span>
+<span class="fc" id="L61">        return handString.toString();</span>
+    }
+
+    /**
+     * Method that exchanges cards in hand of the player
+     * @param playerId id of the player
+     * @param cardId id of the card in hand
+     */
+
+    void exchangeCard(int playerId, int cardId){
+<span class="fc" id="L71">        listOfPlayers.get(playerId).hand.set(cardId, deck.getTopCard());</span>
+<span class="fc" id="L72">    }</span>
+
+    /**
+     * Method that counts points based on the players' hand
+     * @param listOfPlayers list of all players
+     */
+    void evaluateHands(List&lt;Player&gt; listOfPlayers){
+<span class="fc" id="L79">        HandEvaluator evaluator = new HandEvaluator();</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        for(Player player : listOfPlayers){</span>
+<span class="fc" id="L81">            playerRanking.put(player.playerName, evaluator.handEvaluator(player.hand));</span>
+<span class="fc" id="L82">        }</span>
+
+<span class="fc" id="L84">        List&lt;Map.Entry&lt;String, Integer&gt;&gt; list = new ArrayList&lt;&gt;(playerRanking.entrySet());</span>
+<span class="fc" id="L85">        Collections.sort(list, new Comparator&lt;Map.Entry&lt;String, Integer&gt;&gt;() {</span>
+            public int compare(Map.Entry&lt;String, Integer&gt; o1, Map.Entry&lt;String, Integer&gt; o2) {
+<span class="fc" id="L87">                return o2.getValue() - o1.getValue();</span>
+            }
+        });
+
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        for (Map.Entry&lt;String, Integer&gt; value : list) {</span>
+<span class="fc" id="L92">            System.out.println(value.getKey() + &quot; &quot; + value.getValue());</span>
+<span class="fc" id="L93">        }</span>
+
+<span class="fc bfc" id="L95" title="All 2 branches covered.">        for (Map.Entry&lt;String, Integer&gt; hashMap : playerRanking.entrySet()) {</span>
+<span class="fc bfc" id="L96" title="All 2 branches covered.">            if (Objects.equals(hashMap.getValue(), Collections.max(playerRanking.values()))) {</span>
+<span class="fc" id="L97">                System.out.println(&quot;Player &quot; + hashMap.getKey() + &quot; &quot; + &quot;wins, with score: &quot; + hashMap.getValue());</span>
+            }
+<span class="fc" id="L99">        }</span>
+<span class="fc" id="L100">    }</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

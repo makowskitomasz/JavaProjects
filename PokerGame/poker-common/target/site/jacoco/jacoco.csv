@@ -1,0 +1,28 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+poker-common,pl.edu.agh.kis.pz1,Rank.new Rank() {...},0,8,0,0,0,2,0,2,0,2
+poker-common,pl.edu.agh.kis.pz1,Game.new Comparator() {...},0,16,0,0,0,2,0,2,0,2
+poker-common,pl.edu.agh.kis.pz1,Rank.new Rank() {...},0,8,0,0,0,2,0,2,0,2
+poker-common,pl.edu.agh.kis.pz1,Rank.new Rank() {...},0,8,0,0,0,2,0,2,0,2
+poker-common,pl.edu.agh.kis.pz1,Rank.new Rank() {...},0,8,0,0,0,2,0,2,0,2
+poker-common,pl.edu.agh.kis.pz1,Rank.new Rank() {...},0,8,0,0,0,2,0,2,0,2
+poker-common,pl.edu.agh.kis.pz1,Rank.new Rank() {...},0,8,0,0,0,2,0,2,0,2
+poker-common,pl.edu.agh.kis.pz1,Rank.new Rank() {...},0,8,0,0,0,2,0,2,0,2
+poker-common,pl.edu.agh.kis.pz1,Rank.new Rank() {...},0,8,0,0,0,2,0,2,0,2
+poker-common,pl.edu.agh.kis.pz1,Rank.new Rank() {...},0,8,0,0,0,2,0,2,0,2
+poker-common,pl.edu.agh.kis.pz1,Rank.new Rank() {...},0,8,0,0,0,2,0,2,0,2
+poker-common,pl.edu.agh.kis.pz1,Rank.new Rank() {...},0,8,0,0,0,2,0,2,0,2
+poker-common,pl.edu.agh.kis.pz1,Rank.new Rank() {...},0,8,0,0,0,2,0,2,0,2
+poker-common,pl.edu.agh.kis.pz1,Rank.new Rank() {...},0,8,0,0,0,2,0,2,0,2
+poker-common,pl.edu.agh.kis.pz1,Deck,0,107,0,8,0,15,0,9,0,5
+poker-common,pl.edu.agh.kis.pz1,Suit.new Suit() {...},0,8,0,0,0,2,0,2,0,2
+poker-common,pl.edu.agh.kis.pz1,Game,0,233,0,18,0,40,0,15,0,6
+poker-common,pl.edu.agh.kis.pz1,Suit.new Suit() {...},0,8,0,0,0,2,0,2,0,2
+poker-common,pl.edu.agh.kis.pz1,Suit.new Suit() {...},0,8,0,0,0,2,0,2,0,2
+poker-common,pl.edu.agh.kis.pz1,Rank,0,102,0,0,0,17,0,2,0,2
+poker-common,pl.edu.agh.kis.pz1,Suit.new Suit() {...},0,8,0,0,0,2,0,2,0,2
+poker-common,pl.edu.agh.kis.pz1,Hands,0,74,0,0,0,13,0,2,0,2
+poker-common,pl.edu.agh.kis.pz1,Player.new Comparator() {...},0,30,0,2,0,9,0,3,0,2
+poker-common,pl.edu.agh.kis.pz1,HandEvaluator,0,273,0,38,0,39,0,21,0,2
+poker-common,pl.edu.agh.kis.pz1,Suit,0,39,0,0,0,8,0,2,0,2
+poker-common,pl.edu.agh.kis.pz1,Player,0,71,0,2,0,17,0,6,0,5
+poker-common,pl.edu.agh.kis.pz1,Card,0,15,0,0,0,6,0,3,0,3

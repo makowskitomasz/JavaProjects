@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Rank.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">poker-common</a> &gt; <a href="index.source.html" class="el_package">pl.edu.agh.kis.pz1</a> &gt; <span class="el_source">Rank.java</span></div><h1>Rank.java</h1><pre class="source lang-java linenums">package pl.edu.agh.kis.pz1;
+
+<span class="fc" id="L3">public enum Rank {</span>
+
+<span class="fc" id="L5">    ACE(60){</span>
+        @Override
+        public String toString() {
+<span class="fc" id="L8">            return &quot;A&quot;;</span>
+        }
+    },
+<span class="fc" id="L11">    KING(55){</span>
+        @Override
+        public String toString() {
+<span class="fc" id="L14">            return &quot;K&quot;;</span>
+        }
+    },
+<span class="fc" id="L17">    QUEEN(50){</span>
+        @Override
+        public String toString() {
+<span class="fc" id="L20">            return &quot;Q&quot;;</span>
+        }
+    },
+<span class="fc" id="L23">    JACK(45){</span>
+        @Override
+        public String toString() {
+<span class="fc" id="L26">            return &quot;J&quot;;</span>
+        }
+    },
+<span class="fc" id="L29">    TEN(40){</span>
+        @Override
+        public String toString() {
+<span class="fc" id="L32">            return &quot;10&quot;;</span>
+        }
+    },
+<span class="fc" id="L35">    NINE(35){</span>
+        @Override
+        public String toString() {
+<span class="fc" id="L38">            return &quot;9&quot;;</span>
+        }
+    },
+<span class="fc" id="L41">    EIGHT(30){</span>
+        @Override
+        public String toString() {
+<span class="fc" id="L44">            return &quot;8&quot;;</span>
+        }
+    },
+<span class="fc" id="L47">    SEVEN(25){</span>
+        @Override
+        public String toString() {
+<span class="fc" id="L50">            return &quot;7&quot;;</span>
+        }
+    },
+<span class="fc" id="L53">    SIX(20){</span>
+        @Override
+        public String toString() {
+<span class="fc" id="L56">            return &quot;6&quot;;</span>
+        }
+    },
+<span class="fc" id="L59">    FIVE(15){</span>
+        @Override
+        public String toString() {
+<span class="fc" id="L62">            return &quot;5&quot;;</span>
+        }
+    },
+<span class="fc" id="L65">    FOUR(10){</span>
+        @Override
+        public String toString() {
+<span class="fc" id="L68">            return &quot;4&quot;;</span>
+        }
+    },
+<span class="fc" id="L71">    THREE(5){</span>
+        @Override
+        public String toString() {
+<span class="fc" id="L74">            return &quot;3&quot;;</span>
+        }
+    },
+<span class="fc" id="L77">    TWO(0){</span>
+        @Override
+        public String toString() {
+<span class="fc" id="L80">            return &quot;2&quot;;</span>
+        }
+    };
+
+    final int value;
+
+    /**
+     * Mathod that returns value of rank
+     * @param value_ value of rank
+     */
+<span class="fc" id="L90">    Rank(int value_){</span>
+<span class="fc" id="L91">        this.value = value_;</span>
+<span class="fc" id="L92">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Client.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">poker-client</a> &gt; <a href="index.source.html" class="el_package">pl.edu.agh.kis.pz1</a> &gt; <span class="el_source">Client.java</span></div><h1>Client.java</h1><pre class="source lang-java linenums">package pl.edu.agh.kis.pz1;
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.SocketChannel;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import org.apache.log4j.*;
+
+import static java.lang.Integer.parseInt;
+
+/**
+ * Class that defines client
+ */
+<span class="fc" id="L16">public class Client {</span>
+<span class="fc" id="L17">    private static SocketChannel server = null;</span>
+<span class="fc" id="L18">    private static int port = 8000;</span>
+<span class="fc" id="L19">    private static boolean connected = false;</span>
+<span class="fc" id="L20">    static final Logger logger = Logger.getLogger(Client.class);</span>
+
+<span class="fc" id="L22">    public static List&lt;String&gt; logs = new ArrayList&lt;String&gt;();</span>
+
+    public static int getPortNumber() {
+<span class="fc" id="L25">        return portNumber;</span>
+    }
+
+    public static int portNumber;
+
+    /**
+     * Main method which gets the port number as the parameter and connects to the server
+     * @param args port number
+     */
+    public static void main(String[] args) throws IOException {
+
+<span class="fc" id="L36">        logger.info(&quot;Starting client...&quot;);</span>
+<span class="fc" id="L37">        logs.add(&quot;Starting client...&quot;);</span>
+<span class="fc" id="L38">        logger.info(&quot;select server port, default is 8000&quot;);</span>
+<span class="fc" id="L39">        logs.add(&quot;select server port, default is 8000&quot;);</span>
+<span class="pc bpc" id="L40" title="1 of 2 branches missed.">        if(args.length == 0) portNumber = 8000;</span>
+<span class="fc" id="L41">        else portNumber = Integer.parseInt(args[0]);</span>
+<span class="fc" id="L42">        connectToServer(portNumber);</span>
+<span class="fc" id="L43">        logger.info(&quot;Waiting for other players to connect...&quot;);</span>
+<span class="fc" id="L44">        logs.add(&quot;Waiting for other players to connect...&quot;);</span>
+<span class="nc" id="L45">        getCards();</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        while (connected) {</span>
+<span class="nc" id="L47">            logger.info(&quot;\n&quot;+getMessageFromServer());</span>
+<span class="nc" id="L48">            sendCardIndicesToServer();</span>
+<span class="nc" id="L49">            logger.info(getMessageFromServer());</span>
+<span class="nc" id="L50">            logger.info(&quot;Waiting for other players to play...&quot;);</span>
+<span class="nc" id="L51">            logger.info(&quot;\n&quot;+getMessageFromServer());</span>
+<span class="nc" id="L52">            logger.info(&quot;Thank you for playing!&quot;);</span>
+<span class="nc" id="L53">            checkIfNextRound();</span>
+        }
+<span class="nc" id="L55">        server.close();</span>
+<span class="nc" id="L56">    }</span>
+
+    /**
+     * Method that connects client to the server
+     * @param portNumber the mumber of port
+     * @throws IOException if connection is not possible
+     */
+    static void connectToServer(int portNumber) throws IOException {
+        try{
+<span class="fc" id="L65">            server = SocketChannel.open();</span>
+<span class="nc" id="L66">            server.connect(new InetSocketAddress(&quot;localhost&quot;, portNumber));</span>
+<span class="nc" id="L67">            logger.info(&quot;Connected to server&quot;);</span>
+<span class="nc" id="L68">            connected = true;</span>
+<span class="fc" id="L69">        } catch (IOException e) {</span>
+<span class="fc" id="L70">            logger.info(&quot;Connection error - couldn't connect to server&quot;);</span>
+<span class="nc" id="L71">            }</span>
+<span class="fc" id="L72">    }</span>
+
+    /**
+     * Auxillary method that scans integer value
+     * @param scanner scanner object
+     * @return integer value - number of port
+     */
+    static int scanForInt(Scanner scanner) {
+        try{
+<span class="fc" id="L81">            port = scanner.nextInt();</span>
+
+        }
+<span class="fc" id="L84">        catch (Exception e){</span>
+<span class="fc" id="L85">            logger.info(&quot;wrong port, default will be used&quot;);</span>
+<span class="fc" id="L86">        }</span>
+<span class="fc" id="L87">        return port;</span>
+    }
+
+    /**
+     * Method that gets cards from the server
+     * and log  them
+     */
+    static void getCards() throws IOException {
+<span class="nc" id="L95">        logger.info(getMessageFromServer());</span>
+<span class="nc" id="L96">    }</span>
+
+    /**
+     * Method that get message from the server
+     * @return message from the server
+     */
+    static String getMessageFromServer() throws IOException {
+<span class="fc" id="L103">        ByteBuffer buffer = ByteBuffer.allocate(1024);</span>
+<span class="fc" id="L104">        buffer.clear();</span>
+<span class="nc" id="L105">        server.write(buffer);</span>
+<span class="nc" id="L106">        buffer.flip();</span>
+<span class="nc" id="L107">        server.read(buffer);</span>
+<span class="nc" id="L108">        buffer.flip();</span>
+<span class="nc" id="L109">        return new String(buffer.array()).trim();</span>
+    }
+
+    /**
+     * Method that sends card indices to the server
+     */
+    private static void sendCardIndicesToServer() throws IOException {
+<span class="nc" id="L116">        Scanner scanner = new Scanner(System.in);</span>
+<span class="nc" id="L117">        String message = scanner.nextLine();</span>
+<span class="nc" id="L118">        ByteBuffer buffer = ByteBuffer.wrap(message.getBytes());</span>
+<span class="nc" id="L119">        server.write(buffer);</span>
+<span class="nc" id="L120">        logger.info(&quot;Cards sent to the server&quot;);</span>
+<span class="nc" id="L121">    }</span>
+
+    /**
+     * Method that asks a client if he wants to play another round
+     * @throws IOException if connection is not possible
+     */
+    static void checkIfNextRound() throws IOException {
+<span class="nc" id="L128">        String input = &quot;&quot;;</span>
+<span class="nc" id="L129">        Scanner scanner = new Scanner(System.in);</span>
+<span class="nc bnc" id="L130" title="All 4 branches missed.">        while (!input.equals(&quot;y&quot;) &amp;&amp; !input.equals(&quot;n&quot;)) {</span>
+<span class="nc" id="L131">            logger.info(&quot;If you want to play another round press y, if not press n&quot;);</span>
+<span class="nc" id="L132">            scanner.useDelimiter(&quot;&quot;);</span>
+<span class="nc" id="L133">            input = scanner.next();</span>
+        }
+<span class="nc" id="L135">        ByteBuffer buffer = ByteBuffer.wrap(input.getBytes());</span>
+<span class="nc" id="L136">        server.write(buffer);</span>
+<span class="nc" id="L137">        String message = getMessageFromServer();</span>
+<span class="nc" id="L138">        logger.info(message);</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">        if (message.equals(&quot;GameOver&quot;)) {</span>
+<span class="nc" id="L140">            connected = false;</span>
+        }
+<span class="nc" id="L142">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
